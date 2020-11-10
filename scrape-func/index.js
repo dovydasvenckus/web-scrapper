@@ -3,6 +3,7 @@ module.exports = async function (context, req) {
 
     const getData = require('./scraper.js');
     const url = req.body && req.body.url;
+    context.log(url)
     if (url) {
         context.res = {
             body: getData(url)

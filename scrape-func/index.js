@@ -7,7 +7,7 @@ module.exports = async function (context, req) {
     if (url) {
         const html = await getData(url);
         context.res = {
-            body: html
+            body: html.substring(0, 100)
         };
     }
     else {

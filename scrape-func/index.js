@@ -5,8 +5,9 @@ module.exports = async function (context, req) {
     const url = req.body && req.body.url;
     context.log(`Crawling: ${url}`)
     if (url) {
+        const html = await getData(url);
         context.res = {
-            body: await getData(url)
+            body: html
         };
     }
     else {

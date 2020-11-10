@@ -7,9 +7,10 @@ module.exports = async function (context, req) {
         context.res = {
             body: getData(url)
         };
-        return;
     }
-    context.res = {
-        status: 400
+    else {
+        context.res = {
+            status: 400
+        }
     }
 }

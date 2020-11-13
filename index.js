@@ -4,10 +4,6 @@ var express = require("express");
 var app = express();
 app.use(express.json())
 
-app.listen(3000, () => {
- console.log("WebScraper is running on port 3000");
-});
-
 app.post("/scrape", async (req, res, next) => {
   console.log(req.body)
   if (req.body && req.body.url) {
@@ -19,3 +15,7 @@ app.post("/scrape", async (req, res, next) => {
     res.status(400)
   }
 })
+
+app.listen(3000, '0.0.0.0');
+
+console.log("WebScraper is running on port 3000");

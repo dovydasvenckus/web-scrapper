@@ -7,8 +7,9 @@ app.use(express.json())
 app.post("/scrape", async (req, res, next) => {
   console.log(req.body)
   if (req.body && req.body.url) {
-    const data = await getData(req.body.url)
-    res.send(data.data)
+    
+    const data = await getData(req.body)
+    res.send(data)
     res.status(200)
   }
   else {

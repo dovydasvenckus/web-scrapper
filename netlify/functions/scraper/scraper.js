@@ -1,13 +1,12 @@
 exports.handler = async function (event, context) {
-  console.log(event.body)
-  console.log(event.body.url)
-  const url = event.body && event.body.url;
+  const requestBody = JSON.parse(event.body)
+  const url = requestBody && requestBody.url;
   console.log('Crawling:' + url);
   
   if (url) {
-      return {
-          body: await getData(event.body)
-      };
+      return JSON.stringify({
+          body: await getData(requestBody)
+      });
   }
   else {
       return {

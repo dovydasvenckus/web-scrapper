@@ -4,13 +4,14 @@ exports.handler = async function (event, context) {
   console.log('Crawling:' + url);
   
   if (url) {
-      return JSON.stringify({
-          body: await getData(requestBody)
-      });
+      return {
+          statusCode: 200,
+          body: JSON.stringify(await getData(requestBody))
+      };
   }
   else {
       return {
-          status: 400
+        statusCode: 400
       }
   }
 }

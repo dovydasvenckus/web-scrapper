@@ -1,17 +1,17 @@
-module.exports = async function (context, req) {
-    context.log('JavaScript HTTP trigger function processed a request.');
+exports.handler = async function (context, req) {
+    console.log('JavaScript HTTP trigger function processed a request.');
 
     const getData = require('./scraper.js');
     const url = req.body && req.body.url;
-    context.log('Crawling:' + url);
+    console.log('Crawling:' + url);
     
     if (url) {
-        context.res = {
+        return {
             body: await getData(req.body)
         };
     }
     else {
-        context.res = {
+        return {
             status: 400
         }
     }

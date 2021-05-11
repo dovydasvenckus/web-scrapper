@@ -1,4 +1,21 @@
-module.exports = async function getData(request) {
+exports.handler = async function (context, req) {
+  console.log('JavaScript HTTP trigger function processed a request.');
+  const url = req.body && req.body.url;
+  console.log('Crawling:' + url);
+  
+  if (url) {
+      return {
+          body: await getData(req.body)
+      };
+  }
+  else {
+      return {
+          status: 400
+      }
+  }
+}
+
+async function getData(request) {
   const axios = require('axios');
   const cheerio = require('cheerio');
   const response = await axios.get(request.url);

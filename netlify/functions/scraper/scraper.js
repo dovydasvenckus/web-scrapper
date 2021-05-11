@@ -6,6 +6,7 @@ exports.handler = async function (event, context) {
   if (url) {
       return {
           statusCode: 200,
+          headers: {contentType: "application/json"},
           body: JSON.stringify(await getData(requestBody))
       };
   }

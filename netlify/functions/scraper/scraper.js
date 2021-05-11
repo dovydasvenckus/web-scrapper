@@ -1,4 +1,6 @@
 exports.handler = async function (event, context) {
+  console.log(event)
+  console.log(context)
   const url = event.body && event.body.path;
   console.log('Crawling:' + url);
   

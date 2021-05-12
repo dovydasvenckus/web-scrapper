@@ -1,23 +1,4 @@
-exports.handler = async function (event, context) {
-  const requestBody = JSON.parse(event.body)
-  const url = requestBody && requestBody.url;
-  console.log('Crawling:' + url);
-  
-  if (url) {
-      return {
-          statusCode: 200,
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify(await getData(requestBody))
-      };
-  }
-  else {
-      return {
-        statusCode: 400
-      }
-  }
-}
-
-async function getData(request) {
+module.exports = async function getData(request) {
   const axios = require('axios');
   const cheerio = require('cheerio');
   const response = await axios.get(request.url);

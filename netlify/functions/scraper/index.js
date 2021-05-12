@@ -1,5 +1,5 @@
 exports.handler = async function (event, context) {
-  const getData = require('./scraper.js');
+  const getData = require('./scraping.js');
   const requestBody = JSON.parse(event.body)
   const url = requestBody && requestBody.url;
   console.log('Crawling:' + url);

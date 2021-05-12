@@ -1,4 +1,4 @@
-const getData = require('./scrape-func/scraper')
+const getData = require('./netlify/functions/scraper/scraping')
 
 var express = require("express");
 var app = express();

@@ -1,9 +1,9 @@
 import axios from 'axios';
-import cheerio from 'cheerio';
+import cheerio, { CheerioAPI, Node } from 'cheerio';
 import ScrapeRequest from './model/ScrapeRequest'
 import ScrapedItem from './model/ScrapedItem';
 
-module.exports = async function getData(request: ScrapeRequest) : Promise<ScrapedItem[]> {
+export default async function getData(request: ScrapeRequest) : Promise<ScrapedItem[]> {
   const response = await axios.get(request.url);
   const result = []
 
@@ -23,6 +23,6 @@ module.exports = async function getData(request: ScrapeRequest) : Promise<Scrape
   return result;
 }
 
-function getUrl($, elem, urlSelector) {
+function getUrl($: CheerioAPI, elem: Node, urlSelector: string) {
   return urlSelector ? $(elem).find(urlSelector).attr('href') : $(elem).attr('href')
 }

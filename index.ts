@@ -1,7 +1,7 @@
-const getData = require('./netlify/functions/scraper/scraping')
+import getData from './netlify/functions/scraper/scraping';
+import express from 'express';
 
-var express = require("express");
-var app = express();
+const app = express();
 app.use(express.json())
 
 app.post("/scrape", async (req, res, next) => {

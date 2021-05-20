@@ -1,6 +1,9 @@
-exports.handler = async function (event, context) {
-  const getData = require('./scraping.js');
-  const requestBody = JSON.parse(event.body)
+import { Handler } from "@netlify/functions";
+import ScrapeRequest from "./model/ScrapeRequest";
+import getData from './scraping';
+
+const handler: Handler = async function (event) {
+  const requestBody: ScrapeRequest = JSON.parse(event.body)
   const url = requestBody && requestBody.url;
   console.log('Crawling:' + url);
   
@@ -17,3 +20,5 @@ exports.handler = async function (event, context) {
       }
   }
 }
+
+export { handler };

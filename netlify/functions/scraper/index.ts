@@ -2,7 +2,7 @@ import { Handler } from "@netlify/functions";
 import ScrapeRequest from "./model/ScrapeRequest";
 import getData from './scraping';
 
-const handler: Handler = async function (event, context) {
+const handler: Handler = async function (event) {
   const requestBody: ScrapeRequest = JSON.parse(event.body)
   const url = requestBody && requestBody.url;
   console.log('Crawling:' + url);

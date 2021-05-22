@@ -1,4 +1,4 @@
-import getData from './netlify/functions/scraper/scraping';
+import crawlPage from './netlify/functions/scraper/scraping';
 import express from 'express';
 
 const app = express();
@@ -7,7 +7,7 @@ app.use(express.json())
 app.post("/scrape", async (req, res, next) => {
   try {
     if (req.body && req.body.url) {
-      const data = await getData(req.body)
+      const data = await crawlPage(req.body)
       res.send(data)
       res.status(200)
     }

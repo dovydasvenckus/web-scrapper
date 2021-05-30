@@ -13,11 +13,15 @@ export function scrapeData(request: ScrapeRequest, htmlBody: string) : ScrapeRes
   };
 }
 
-export default async function crawlPage(request: ScrapeRequest) : Promise<ScrapeResponse> {
-   const response = await axios.get(request.url);
-
-   if (response.status === 200) {
-     return scrapeData(request, response.data);
-   }
-   return {status: Status.FAILURE};
+export async function crawlPage(request: ScrapeRequest) : Promise<ScrapeResponse> {
+  try {
+    const response = await axios.get(request.url);
+    if (response.status === 200) {
+      return scrapeData(request, response.data);
+    }
+    return {status: Status.FAILURE};
+  }
+  catch(e) {
+    return {status: Status.FAILURE};
+  }
 }

@@ -1,6 +1,8 @@
+import Step from "./Step";
+
 interface ScrapeRequest {
   url: string,
-  itemSelector: string,
+  steps: Step[];
 }
 
 export default ScrapeRequest;

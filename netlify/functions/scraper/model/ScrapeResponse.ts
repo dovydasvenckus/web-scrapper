@@ -1,8 +1,9 @@
+import ScrapedField from "./ScrapedField";
 import Status from "./ScrapeStatus";
 
 interface ScrapeResponse {
   status: Status;
-  value?: string;
+  data?: ScrapedField[]; 
 }
 
 export default ScrapeResponse;

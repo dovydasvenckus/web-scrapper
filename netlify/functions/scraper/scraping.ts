@@ -1,15 +1,25 @@
 import axios from 'axios';
-import cheerio from 'cheerio';
+import cheerio, { CheerioAPI } from 'cheerio';
+import ScrapedField from './model/ScrapedField';
 import ScrapeRequest from './model/ScrapeRequest'
 import ScrapeResponse from './model/ScrapeResponse';
 import Status from './model/ScrapeStatus';
+import Step from './model/Step';
+
+const parseStep = (step: Step, $: CheerioAPI) : ScrapedField => {
+  return {
+    name: step.fieldName,
+    value: $(step.selector).text().trim()
+  } 
+}
 
 export function scrapeData(request: ScrapeRequest, htmlBody: string) : ScrapeResponse {
   const $ = cheerio.load(htmlBody);
-  
+  const { steps } = request;
+
   return {
     status: Status.SUCCESS,
-    value: $(request.itemSelector).text().trim()
+    data: steps.map(step => parseStep(step, $))
   };
 }
 

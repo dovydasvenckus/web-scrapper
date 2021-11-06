@@ -1,3 +1,3 @@
 # web-scrapper
 
-Generic web scrapper, which should be deployable to docker container on Azure cloud functions.
+Generic web scrapper, which should be deployable to docker container or Netlify cloud functions.

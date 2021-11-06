@@ -5,12 +5,28 @@ import ScrapeRequest from './model/ScrapeRequest'
 import ScrapeResponse from './model/ScrapeResponse';
 import Status from './model/ScrapeStatus';
 import Step from './model/Step';
+import StepType from "./model/StepType";
 
-const parseStep = (step: Step, $: CheerioAPI) : ScrapedField => {
+const scrapeText = (step: Step, $: CheerioAPI) :ScrapedField => {
   return {
     name: step.fieldName,
-    value: $(step.selector).text().trim()
-  } 
+    value: $(step.selector).text().trim() || null
+  }
+}
+
+const parseStep = (step: Step, $: CheerioAPI) : ScrapedField => {
+  switch (step.type) {
+    case StepType.SCRAPE_ATTRIBUTE: {
+      return {
+        name: step.fieldName,
+        value: $(step.selector).attr(step.attributeName)?.trim() || null
+      } 
+    }
+    case StepType.SCRAPE_TEXT:
+      return scrapeText(step, $);
+    default:
+      return scrapeText(step, $);
+    } 
 }
 
 export function scrapeData(request: ScrapeRequest, htmlBody: string) : ScrapeResponse {

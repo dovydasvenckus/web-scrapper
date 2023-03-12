@@ -6,7 +6,7 @@ import StepType from './model/StepType'
 describe('scrapper', () => {
   it('should scrape single field', async () => {
     const request = {url: 'http://some-fake-url/', steps: [{"type": StepType.SCRAPE_TEXT, fieldName: 'firstField', selector: '#p123'}]}
-    const htmlBody = await fs.promises.readFile('./testData/simple.html');
+    const htmlBody = await fs.promises.readFile('./netlify/functions/scraper/testData/simple.html');
 
     const result = scrapeData(request, htmlBody.toString());
     
@@ -30,7 +30,7 @@ describe('scrapper', () => {
         {fieldName: 'secondField', selector: '#p124'}
       ]
     }
-    const htmlBody = await fs.promises.readFile('./testData/simple.html');
+    const htmlBody = await fs.promises.readFile('./netlify/functions/scraper/testData/simple.html');
     
     const result = scrapeData(request, htmlBody.toString());
 
@@ -47,7 +47,7 @@ describe('scrapper', () => {
         {type: StepType.SCRAPE_ATTRIBUTE, attributeName: 'id', fieldName: 'scrapedAttribute', selector: '#p123'},
       ]
     }
-    const htmlBody = await fs.promises.readFile('./testData/simple.html');
+    const htmlBody = await fs.promises.readFile('./netlify/functions/scraper/testData/simple.html');
     
     const result = scrapeData(request, htmlBody.toString());
 
@@ -63,7 +63,7 @@ describe('scrapper', () => {
         {type: StepType.SCRAPE_ATTRIBUTE, attributeName: 'idz', fieldName: 'scrapedAttribute', selector: '#p123'},
       ]
     }
-    const htmlBody = await fs.promises.readFile('./testData/simple.html');
+    const htmlBody = await fs.promises.readFile('./netlify/functions/scraper/testData/simple.html');
     
     const result = scrapeData(request, htmlBody.toString());
 

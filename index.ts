@@ -1,4 +1,4 @@
-import { crawlPage } from './scraping';
+import { crawlPage } from './netlify/functions/scraper/scraping';
 import express from 'express';
 
 const app = express();
